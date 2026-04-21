@@ -30,6 +30,7 @@ def get_kk_imgs(kk_img: pg.Surface) -> dict[tuple[int, int], pg.Surface]:
     }
     return kk_dict
 """
+
 def gameover(screen: pg.Surface) -> None:
     """
     ゲームオーバー画面
