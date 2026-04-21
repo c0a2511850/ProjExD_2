@@ -18,14 +18,14 @@ def get_kk_imgs(kk_img: pg.Surface) -> dict[tuple[int, int], pg.Surface]:
     migi=pg.transform.flip(hidari,True,False)
     kk_dict = {
         ( 0, 0):pg.transform.rotozoom(migi, 0, 1.0),
-        ( 0, -5):pg.transform.rotozoom(migi, 90, 1.0),
-        ( +5, -5):pg.transform.rotozoom(migi, 45, 1.0),
-        ( +5, 0):pg.transform.rotozoom(migi, 0, 1.0),
-        ( +5, +5):pg.transform.rotozoom(migi, -45, 1.0),
-        ( 0, +5):pg.transform.rotozoom(migi, -90, 1.0),
-        ( -5, +5):pg.transform.rotozoom(hidari, 45, 1.0),
-        ( -5, 0):pg.transform.rotozoom(hidari, 0, 1.0),
-        ( -5, -5):pg.transform.rotozoom(hidari, -45, 1.0),
+        ( 0, -5):pg.transform.rotozoom(migi, 90, 1.0),#上
+        ( +5, -5):pg.transform.rotozoom(migi, 45, 1.0),#右上
+        ( +5, 0):pg.transform.rotozoom(migi, 0, 1.0),#右
+        ( +5, +5):pg.transform.rotozoom(migi, -45, 1.0),#右下
+        ( 0, +5):pg.transform.rotozoom(migi, -90, 1.0),#下
+        ( -5, +5):pg.transform.rotozoom(hidari, 45, 1.0),#左下
+        ( -5, 0):pg.transform.rotozoom(hidari, 0, 1.0),#左
+        ( -5, -5):pg.transform.rotozoom(hidari, -45, 1.0),#左上
     }
     return kk_dict
 
@@ -126,7 +126,6 @@ def main():
         kk_rct.move_ip(sum_mv)
         if check_bound(kk_rct) != (True, True):
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1])
-
         kk_img = kk_imgs[tuple(sum_mv)]
         screen.blit(kk_img, kk_rct)
         bb_rct.move_ip(vx, vy)
