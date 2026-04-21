@@ -13,6 +13,7 @@ DELTA = {
     pg.K_RIGHT: (+10,0),
 }
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+"""
 def get_kk_imgs(kk_img: pg.Surface) -> dict[tuple[int, int], pg.Surface]:
     hidari=kk_img
     migi=pg.transform.flip(hidari,True,False)
@@ -28,13 +29,10 @@ def get_kk_imgs(kk_img: pg.Surface) -> dict[tuple[int, int], pg.Surface]:
         ( -5, -5):pg.transform.rotozoom(hidari, -45, 1.0),#左上
     }
     return kk_dict
-
+"""
 def gameover(screen: pg.Surface) -> None:
     """
     ゲームオーバー画面
-
-    引数：画面Surface
-    戻り値：なし
     """
     # 黒背景
     black = pg.Surface(screen.get_size())
@@ -91,8 +89,8 @@ def main():
     pg.draw.circle(bb_img, (255, 0, 0,),(10, 10), 10)
     bb_img.set_colorkey((0, 0, 0))
     kk_rct = kk_img.get_rect()
-    kk_hidari = pg.image.load("fig/3.png")
-    kk_imgs = get_kk_imgs(kk_hidari)
+    #kk_hidari = pg.image.load("fig/3.png")
+    #kk_imgs = get_kk_imgs(kk_hidari)
     bb_rct = bb_img.get_rect()
     kk_rct.center = 300, 200
     bb_rct.centerx = random.randint(0,WIDTH)
@@ -126,7 +124,7 @@ def main():
         kk_rct.move_ip(sum_mv)
         if check_bound(kk_rct) != (True, True):
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1])
-        kk_img = kk_imgs[tuple(sum_mv)]
+        #kk_img = kk_imgs[tuple(sum_mv)]
         screen.blit(kk_img, kk_rct)
         bb_rct.move_ip(vx, vy)
         yoko, tate=check_bound(bb_rct)
@@ -139,7 +137,7 @@ def main():
         tmr += 1
         clock.tick(50)
         if kk_rct.colliderect(bb_rct):
-            gameover(screen)
+            gameover(screen)#ゲームオーバー
             return
 
     
